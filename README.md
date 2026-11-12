@@ -49,50 +49,26 @@
 | `product/overlay/SettingsResourceOverlay.apk` | `/product/overlay/SettingsResourceOverlay.apk` | Bold **PROXIMAOS** metallic vector logo overlay for the About Phone banner. |
 | `system_ext/priv-app/Provision/Provision.apk` | `/system_ext/priv-app/Provision/Provision.apk` | Custom Setup Wizard with **Project ProximaOS** vector branding (Red-Orange `OS`). |
 | `assets/ProximaOS_Bold_Logo.png` | Repository Banner / Asset | High-resolution transparent Bold PROXIMAOS wordmark. |
+.
 
----
+## ⚡ Installation Instructions (Fastboot)
 
-## 🛠️ How to Upload Your 3.9 GB ROM to GitHub Releases
+1. Ensure your **Redmi Note 14 5G OR Poco M7 Pro 5G (`beryl` / `citrine`)** bootloader is unlocked.
+2. Download the ProximaOS™ ROM archive from the [Releases](../../releases) page
+3. Reboot device into Fastboot mode.
+4. Flash the ROM (`fastboot flash super super.img`).
+5. - fastboot --disable-verity --disable-verification flash vbmeta vbmeta.img --slot all
 
-> **⚠️ Important GitHub Size Limit**:
-> - **Git Repository (`git push`)**: Maximum **100 MB** per file (NEVER put the 3.9 GB `.zip` inside normal repo commits).
-> - **GitHub Releases (Release Assets)**: Maximum **2.0 GB (2048 MB)** per individual uploaded file.
-> - Because your ROM is **3.9 GB**, you have **2 easy options** to host it on GitHub:
+- fastboot reboot recovery
 
-### Option A: Upload Directly to GitHub Releases as a 2-Part Split Archive (100% Free & Fast Servers)
-GitHub Releases allows unlimited files up to **2 GB each**. Splitting your 3.9 GB ROM into two `1.95 GB` parts lets you host it directly on GitHub's ultra-fast CDN:
+                  →Wipe Data →
 
-**Using Termux / Linux / PC (7-Zip or `split`):**
-```bash
-# Method 1: Create a multi-volume 7z archive (1900 MB per part)
-7z a -v1900m ProximaOS_beryl_OS3.0.306.0_By_Karan.7z ProximaOS_ROM.zip
+Back to Fastboot(most important)
 
-# Method 2: Or split the flashable ZIP directly into 2 parts
-split -b 1950M -d ProximaOS_ROM.zip ProximaOS_beryl_OS3.0.306.0.zip.part
-```
+- Fastboot -w
 
-**Or Using GitHub CLI (`gh`) to Create the Release & Upload Both Parts:**
-```bash
-gh release create v3.0.306.0 \
-  ProximaOS_beryl_OS3.0.306.0.zip.part00 \
-  ProximaOS_beryl_OS3.0.306.0.zip.part01 \
-  --title "ProximaOS™ v3.0.306.0 | Xiaomi 15 Ultra Edition | Redmi Note 14 5G (beryl)" \
-  --notes-file RELEASE_NOTES.md
-```
-
-### Option B: Single-File 3.9 GB Direct Download Mirror + GitHub Release Page
-If you want users to download a **single unsplit 3.9 GB `.zip`**, upload the `.zip` to **SourceForge**, **PixelDrain**, or **GoFile**, and paste the direct download button inside your GitHub Release notes!
-
----
-
-## ⚡ Installation Instructions (Fastboot / Recovery)
-
-1. Ensure your **Redmi Note 14 5G (`beryl` / `citrine`)** bootloader is unlocked.
-2. Download the ProximaOS™ ROM archive from the [Releases](../../releases) page (if split into `.7z.001` & `.7z.002`, extract `.7z.001` using ZArchiver / MT Manager / 7-Zip to get the full ROM).
-3. Reboot device into Fastboot / Recovery mode.
-4. Flash the ROM script (`fastboot_first_install_with_data_format.bat` / `.sh`) or flash via custom recovery.
-5. **Format Data (`Wipe Data`)** is mandatory on first install so all `persist.*` Computility 4 and Ultra Blur properties initialize cleanly.
-6. Reboot and enjoy **Project ProximaOS™**!
+- fastboot erase frp
+7. Reboot and enjoy **Project ProximaOS™**!
 
 ---
 
